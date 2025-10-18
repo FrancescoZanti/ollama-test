@@ -18,6 +18,7 @@ Questo progetto contiene esempi pratici e completi per interagire con Ollama usa
 
 ## 📑 Indice
 
+- [Quick Start](#-quick-start)
 - [Prerequisiti](#prerequisiti)
 - [Installazione](#installazione)
 - [Verifica Ollama](#verifica-ollama)
@@ -27,6 +28,7 @@ Questo progetto contiene esempi pratici e completi per interagire con Ollama usa
 - [API Endpoints](#api-endpoints)
 - [Troubleshooting](#troubleshooting)
 - [Struttura del progetto](#struttura-del-progetto)
+- [Screenshot e Esempi](#-screenshot-e-esempi)
 - [Risorse utili](#risorse-utili)
 
 ## 🚀 Quick Start
@@ -88,6 +90,8 @@ ollama list
 ```
 
 ## Script disponibili
+
+**📋 Non sai quale script usare?** [Vedi il confronto dettagliato](screenshots/script_comparison.txt)
 
 ### 1. `setup_check.py` - Verifica configurazione
 
@@ -392,8 +396,24 @@ ollama-test/
 └── .venv/                         # 🐍 Ambiente virtuale Python
 ```
 
+## 📸 Screenshot e Esempi
+
+Tutti gli esempi di output e i diagrammi sono disponibili nella cartella `screenshots/`:
+
+- 📐 [Architettura del sistema](screenshots/architecture.txt) - Diagramma completo dell'architettura
+- 🔄 [Workflow di utilizzo](screenshots/workflow.txt) - Guida passo-passo per ogni scenario
+- 📊 [Confronto script](screenshots/script_comparison.txt) - Quale script usare e quando
+- 💻 [Output setup_check.py](screenshots/setup_check_output.txt) - Esempio di verifica configurazione
+- 🐍 [Output ollama_basic.py](screenshots/ollama_basic_output.txt) - Esempi base in esecuzione
+- 💬 [Sessione chatbot.py](screenshots/chatbot_session.txt) - Esempio di conversazione
+- 🛠️ [Output programming_tools.py](screenshots/programming_tools_output.txt) - Code review esempio
+
 ## Risorse utili
 
 - [Documentazione Ollama](https://ollama.ai/docs)
 - [API Reference](https://github.com/ollama/ollama/blob/main/docs/api.md)
 - [Libreria Python ufficiale](https://pypi.org/project/ollama/)
+
+---
+
+**💡 Suggerimento**: Inizia con `python quick_test.py` per verificare che tutto funzioni, poi esplora gli altri script!
