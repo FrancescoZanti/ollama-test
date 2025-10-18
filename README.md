@@ -18,17 +18,17 @@ Questo progetto contiene esempi pratici e completi per interagire con Ollama usa
 
 ## 📑 Indice
 
-- [Quick Start](#-quick-start)
+- [Quick Start](#quick-start)
 - [Prerequisiti](#prerequisiti)
 - [Installazione](#installazione)
 - [Verifica Ollama](#verifica-ollama)
 - [Script disponibili](#script-disponibili)
-- [Diagrammi e Architettura](#-diagrammi-e-architettura)
+- [Diagrammi e Architettura](#diagrammi-e-architettura)
 - [Esempi di utilizzo](#esempi-di-utilizzo)
 - [API Endpoints](#api-endpoints)
 - [Troubleshooting](#troubleshooting)
 - [Struttura del progetto](#struttura-del-progetto)
-- [Screenshot e Esempi](#-screenshot-e-esempi)
+- [Screenshot e Esempi](#screenshot-e-esempi)
 - [Risorse utili](#risorse-utili)
 
 ## 🚀 Quick Start

@@ -35,7 +35,7 @@ DETTAGLIO SCRIPT
 ║   ✓ Test generazione singola                                          ║
 ║                                                                       ║
 ║ Caratteristiche:                                                      ║
-║   • Minimalista (< 20 righe)                                          ║
+║   • Minimalista (< 20 righe di codice)                                ║
 ║   • Nessuna dipendenza esterna                                        ║
 ║   • Output chiaro ✅/❌                                               ║
 ╚═══════════════════════════════════════════════════════════════════════╝
