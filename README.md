@@ -245,6 +245,115 @@ Inserisci il codice da revisionare:
 
 [Vedi output completo](screenshots/programming_tools_output.txt)
 
+### 7. `rag_example.py` - Sistema RAG (Retrieval Augmented Generation)
+
+Sistema RAG completo che utilizza i PDF in `example/pdf` per creare una knowledge base interrogabile:
+- Caricamento automatico di PDF
+- Estrazione e chunking intelligente del testo
+- Creazione di embeddings con Ollama
+- Database vettoriale con ChromaDB
+- Ricerca semantica nel contenuto
+- Generazione di risposte basate sul contesto recuperato
+
+```bash
+# Modalità interattiva
+python rag_example.py
+
+# Esegui query di esempio
+python rag_example.py --demo
+
+# Mostra aiuto
+python rag_example.py --help
+```
+
+**Esempio di utilizzo interattivo:**
+```
+🤖 Sistema RAG (Retrieval Augmented Generation) con Ollama
+======================================================================
+📚 Caricamento PDF da example/pdf...
+   Elaborazione: 01_intelligenza_artificiale_machine_learning.pdf
+   ✅ 01_intelligenza_artificiale_machine_learning.pdf: 57 pagine estratte
+   ...
+
+✅ Caricati 5 documenti
+
+🔄 Creazione embeddings e memorizzazione in ChromaDB...
+   Processamento: 01_intelligenza_artificiale_machine_learning.pdf
+   ✅ 01_intelligenza_artificiale_machine_learning.pdf: 325 chunks processati
+   ...
+
+✅ Database vettoriale creato con 1444 chunks
+
+======================================================================
+✅ Sistema RAG pronto!
+======================================================================
+
+Puoi fare domande sui seguenti documenti:
+  • 01_intelligenza_artificiale_machine_learning.pdf
+  • 02_cambiamento_climatico_sostenibilita.pdf
+  • 03_storia_esplorazione_spaziale.pdf
+  • 04_tecnologie_web_moderne.pdf
+  • 05_neuroscienze_ricerca_cervello.pdf
+
+Comandi speciali:
+  /quit o /exit - Esci dal programma
+  /docs - Mostra la lista dei documenti
+
+======================================================================
+
+❓ Fai una domanda: Cos'è l'intelligenza artificiale?
+
+🔍 Ricerca nei documenti...
+
+📄 Chunk rilevanti trovati:
+   1. 01_intelligenza_artificiale_machine_learning.pdf (chunk 45)
+   2. 01_intelligenza_artificiale_machine_learning.pdf (chunk 12)
+   3. 01_intelligenza_artificiale_machine_learning.pdf (chunk 89)
+
+🤖 Generazione risposta...
+
+💡 Risposta:
+L'intelligenza artificiale (IA) è una branca dell'informatica che si occupa
+di creare sistemi in grado di eseguire compiti che normalmente richiederebbero
+l'intelligenza umana...
+```
+
+**Caratteristiche del sistema RAG:**
+- 📄 **Caricamento PDF**: Estrae testo da tutti i PDF nella cartella specificata
+- ✂️ **Chunking intelligente**: Divide il testo in chunk con sovrapposizione per preservare il contesto
+- 🧮 **Embeddings**: Utilizza Ollama per generare embeddings vettoriali
+- 🗄️ **ChromaDB**: Memorizza e indicizza i chunk per una ricerca veloce
+- 🔍 **Ricerca semantica**: Trova i chunk più rilevanti basandosi sul significato
+- 🤖 **Generazione contestuale**: Produce risposte accurate basate solo sul contenuto recuperato
+- 💬 **Modalità interattiva**: Permette di fare domande in modo conversazionale
+
+**Utilizzo programmatico:**
+
+Il file `example_rag_usage.py` contiene esempi pratici di come utilizzare il sistema RAG nel proprio codice:
+
+```python
+from rag_example import RAGSystem
+
+# Inizializza e carica documenti
+rag = RAGSystem(pdf_folder="example/pdf", model_name="granite4")
+rag.load_pdfs()
+rag.create_embeddings()
+
+# Fai una domanda
+answer = rag.query("Cos'è l'intelligenza artificiale?")
+print(answer)
+
+# Ricerca personalizzata
+results = rag.search("machine learning", n_results=5)
+for doc in results['documents'][0]:
+    print(doc)
+```
+
+Esegui gli esempi con:
+```bash
+python example_rag_usage.py
+```
+
 ## 📊 Diagrammi e Architettura
 
 ### Architettura del Sistema
@@ -304,6 +413,7 @@ Flusso consigliato per iniziare:
 - 💬 **Chat interattiva?** → `chatbot.py`
 - 🔧 **Programmare?** → `programming_tools.py`
 - 🌐 **HTTP API?** → `ollama_http.py`
+- 🔍 **RAG con PDF?** → `rag_example.py`
 
 [Vedi workflow dettagliato](screenshots/workflow.txt)
 
@@ -374,6 +484,7 @@ Ollama espone diverse API REST:
 ollama-test/
 ├── README.md                      # 📖 Questa guida completa
 ├── requirements.txt               # 📦 Dipendenze Python
+├── .gitignore                     # 🚫 File da escludere da git
 │
 ├── setup_check.py                 # 🔍 Verifica configurazione
 ├── quick_test.py                  # ⚡ Test rapido connessione
@@ -384,6 +495,16 @@ ollama-test/
 │
 ├── chatbot.py                     # 💬 Chatbot interattivo
 ├── programming_tools.py           # 🛠️ Strumenti per sviluppatori
+├── rag_example.py                 # 🔍 Sistema RAG con PDF
+├── example_rag_usage.py           # 📖 Esempi di utilizzo RAG
+│
+├── example/                       # 📁 Esempi e risorse
+│   └── pdf/                       # 📄 PDF per il sistema RAG
+│       ├── 01_intelligenza_artificiale_machine_learning.pdf
+│       ├── 02_cambiamento_climatico_sostenibilita.pdf
+│       ├── 03_storia_esplorazione_spaziale.pdf
+│       ├── 04_tecnologie_web_moderne.pdf
+│       └── 05_neuroscienze_ricerca_cervello.pdf
 │
 ├── screenshots/                   # 📸 Esempi di output e diagrammi
 │   ├── architecture.txt           #     Architettura del sistema
