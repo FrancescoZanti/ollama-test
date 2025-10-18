@@ -1,0 +1,233 @@
+Confronto degli Script Disponibili
+===================================
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                      QUALE SCRIPT USARE?                                   ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────┬──────────────┬──────────────┬─────────────────────┐
+│ Script              │ Difficoltà   │ Durata       │ Scopo               │
+├─────────────────────┼──────────────┼──────────────┼─────────────────────┤
+│ quick_test.py       │ ⭐           │ < 30 sec     │ Test veloce         │
+│ setup_check.py      │ ⭐           │ ~1 min       │ Verifica completa   │
+│ ollama_basic.py     │ ⭐⭐         │ ~2 min       │ Imparare le basi    │
+│ ollama_http.py      │ ⭐⭐⭐       │ ~3 min       │ Controllo HTTP      │
+│ ollama_advanced.py  │ ⭐⭐⭐       │ ~5 min       │ App con stato       │
+│ chatbot.py          │ ⭐⭐         │ Interattivo  │ Chat dal terminale  │
+│ programming_tools.py│ ⭐⭐⭐       │ Interattivo  │ Aiuto sviluppo      │
+└─────────────────────┴──────────────┴──────────────┴─────────────────────┘
+
+
+DETTAGLIO SCRIPT
+================
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ 1. quick_test.py - Test Rapido                                       ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║ Quando usarlo:                                                        ║
+║   • Prima volta che usi Ollama                                        ║
+║   • Vuoi verificare velocemente che tutto funzioni                    ║
+║   • Dopo aver installato/aggiornato Ollama                            ║
+║                                                                       ║
+║ Cosa fa:                                                              ║
+║   ✓ Verifica connessione                                              ║
+║   ✓ Lista modelli                                                     ║
+║   ✓ Test generazione singola                                          ║
+║                                                                       ║
+║ Caratteristiche:                                                      ║
+║   • Minimalista (< 20 righe)                                          ║
+║   • Nessuna dipendenza esterna                                        ║
+║   • Output chiaro ✅/❌                                               ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ 2. setup_check.py - Verifica Configurazione                          ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║ Quando usarlo:                                                        ║
+║   • Setup iniziale del progetto                                       ║
+║   • Risolvere problemi di configurazione                              ║
+║   • Verificare che Granite4 sia disponibile                           ║
+║                                                                       ║
+║ Cosa fa:                                                              ║
+║   ✓ Verifica versione Python                                          ║
+║   ✓ Controlla server Ollama                                           ║
+║   ✓ Cerca modelli Granite                                             ║
+║   ✓ Testa libreria ollama                                             ║
+║   ✓ Esegue generazione di test                                        ║
+║                                                                       ║
+║ Caratteristiche:                                                      ║
+║   • Diagnostica completa                                              ║
+║   • Report dettagliato con emoji                                      ║
+║   • Suggerimenti per risolvere problemi                               ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ 3. ollama_basic.py - Esempi Base                                     ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║ Quando usarlo:                                                        ║
+║   • Stai imparando a usare Ollama                                     ║
+║   • Vuoi esempi semplici da copiare                                   ║
+║   • Primo progetto con Ollama                                         ║
+║                                                                       ║
+║ Cosa fa:                                                              ║
+║   ✓ Test connessione                                                  ║
+║   ✓ Chat semplice                                                     ║
+║   ✓ Generazione testo                                                 ║
+║   ✓ Streaming delle risposte                                          ║
+║                                                                       ║
+║ Caratteristiche:                                                      ║
+║   • Funzioni indipendenti                                             ║
+║   • Codice commentato                                                 ║
+║   • Esempi pronti all'uso                                             ║
+║   • Gestione errori base                                              ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ 4. ollama_advanced.py - Client Avanzato                              ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║ Quando usarlo:                                                        ║
+║   • Devi creare un'applicazione reale                                 ║
+║   • Serve gestire la cronologia                                       ║
+║   • Vuoi personalizzare il system prompt                              ║
+║   • Necessità di salvare conversazioni                                ║
+║                                                                       ║
+║ Cosa fa:                                                              ║
+║   ✓ Classe OllamaClient completa                                      ║
+║   ✓ Gestione cronologia messaggi                                      ║
+║   ✓ System prompt configurabile                                       ║
+║   ✓ Salvataggio/caricamento JSON                                      ║
+║   ✓ Funzioni specializzate (analisi, traduzione)                      ║
+║                                                                       ║
+║ Caratteristiche:                                                      ║
+║   • Orientato agli oggetti                                            ║
+║   • Mantiene lo stato                                                 ║
+║   • Riutilizzabile in altri progetti                                  ║
+║   • Metodi per casi d'uso comuni                                      ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ 5. ollama_http.py - API HTTP Dirette                                 ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║ Quando usarlo:                                                        ║
+║   • Serve massimo controllo sulle richieste                           ║
+║   • Debugging di problemi HTTP                                        ║
+║   • Implementazione custom dell'API                                   ║
+║   • Non vuoi dipendere dalla libreria ollama                          ║
+║                                                                       ║
+║ Cosa fa:                                                              ║
+║   ✓ Richieste HTTP dirette con requests                               ║
+║   ✓ Gestione dettagliata degli errori                                 ║
+║   ✓ Controllo completo dei parametri                                  ║
+║   ✓ Streaming manuale                                                 ║
+║                                                                       ║
+║ Caratteristiche:                                                      ║
+║   • Nessuna dipendenza da ollama                                      ║
+║   • Massima flessibilità                                              ║
+║   • Utile per capire l'API                                            ║
+║   • Base per client custom                                            ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ 6. chatbot.py - Chatbot Interattivo                                  ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║ Quando usarlo:                                                        ║
+║   • Vuoi chattare con il modello                                      ║
+║   • Test rapidi di prompt/risposte                                    ║
+║   • Prototipazione di conversazioni                                   ║
+║   • Uso quotidiano come assistente                                    ║
+║                                                                       ║
+║ Cosa fa:                                                              ║
+║   ✓ REPL interattivo per chat                                         ║
+║   ✓ Cronologia conversazione                                          ║
+║   ✓ Comandi speciali (/help, /stats, /save)                           ║
+║   ✓ Salvataggio automatico                                            ║
+║                                                                       ║
+║ Caratteristiche:                                                      ║
+║   • Interfaccia utente friendly                                       ║
+║   • Persistenza conversazioni                                         ║
+║   • Statistiche in tempo reale                                        ║
+║   • Facile da usare                                                   ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ 7. programming_tools.py - Strumenti Programmazione                   ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║ Quando usarlo:                                                        ║
+║   • Code review automatico                                            ║
+║   • Generazione documentazione                                        ║
+║   • Spiegazione errori di compilazione                                ║
+║   • Refactoring assistito                                             ║
+║   • Analisi performance del codice                                    ║
+║                                                                       ║
+║ Cosa fa:                                                              ║
+║   ✓ Menu interattivo con opzioni                                      ║
+║   ✓ Revisione codice con suggerimenti                                 ║
+║   ✓ Generazione automatica docs                                       ║
+║   ✓ Analisi errori con soluzioni                                      ║
+║   ✓ Suggerimenti di refactoring                                       ║
+║   ✓ Ottimizzazione performance                                        ║
+║                                                                       ║
+║ Caratteristiche:                                                      ║
+║   • Prompt specializzati per codice                                   ║
+║   • Output formattato                                                 ║
+║   • Salvataggio risultati                                             ║
+║   • Integrazione nel workflow                                         ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+
+PERCORSO CONSIGLIATO
+====================
+
+Per chi inizia:
+    1. quick_test.py      → Verifica che funzioni
+    2. setup_check.py     → Setup completo
+    3. ollama_basic.py    → Impara le basi
+    4. chatbot.py         → Prova l'interazione
+    5. ollama_advanced.py → Sviluppa la tua app
+
+Per sviluppatori:
+    1. setup_check.py        → Verifica ambiente
+    2. ollama_http.py        → Comprendi l'API
+    3. ollama_advanced.py    → Base per il progetto
+    4. programming_tools.py  → Assistente sviluppo
+
+
+DIPENDENZE
+==========
+
+┌─────────────────────┬─────────────────────┬──────────────────────┐
+│ Script              │ Libreria ollama     │ Libreria requests    │
+├─────────────────────┼─────────────────────┼──────────────────────┤
+│ quick_test.py       │ ✅ Richiesta        │ ❌ Non necessaria    │
+│ setup_check.py      │ ✅ Richiesta        │ ✅ Richiesta         │
+│ ollama_basic.py     │ ✅ Richiesta        │ ❌ Non necessaria    │
+│ ollama_http.py      │ ❌ Non necessaria   │ ✅ Richiesta         │
+│ ollama_advanced.py  │ ✅ Richiesta        │ ❌ Non necessaria    │
+│ chatbot.py          │ ✅ Richiesta        │ ❌ Non necessaria    │
+│ programming_tools.py│ ✅ Richiesta        │ ❌ Non necessaria    │
+└─────────────────────┴─────────────────────┴──────────────────────┘
+
+
+CASI D'USO COMUNI
+=================
+
+"Voglio solo testare se funziona"
+→ quick_test.py
+
+"Ho problemi e non capisco perché"
+→ setup_check.py
+
+"Devo imparare le basi di Ollama"
+→ ollama_basic.py
+
+"Sto sviluppando un'app con conversazioni"
+→ ollama_advanced.py
+
+"Voglio usare HTTP senza librerie"
+→ ollama_http.py
+
+"Voglio chattare rapidamente"
+→ chatbot.py
+
+"Mi serve aiuto con il codice"
+→ programming_tools.py

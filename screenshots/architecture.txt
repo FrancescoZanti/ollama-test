@@ -1,0 +1,139 @@
+Architettura del Progetto Ollama-Test
+======================================
+
+┌─────────────────────────────────────────────────────────────┐
+│                    UTENTE / SVILUPPATORE                     │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+                     │ Esegue script Python
+                     │
+        ┌────────────┴────────────┐
+        │                         │
+┌───────▼─────────┐      ┌────────▼────────┐
+│  Script Python  │      │   Chatbot CLI    │
+│  (esempio)      │      │   (interattivo)  │
+├─────────────────┤      ├──────────────────┤
+│ • setup_check   │      │ • Conversazione  │
+│ • ollama_basic  │      │ • Cronologia     │
+│ • ollama_http   │      │ • Salvataggio    │
+│ • quick_test    │      │ • Comandi /cmd   │
+└────────┬────────┘      └────────┬─────────┘
+         │                        │
+         │  API Calls             │
+         └────────┬───────────────┘
+                  │
+         ┌────────▼─────────┐
+         │ Libreria ollama  │
+         │  (Python SDK)    │
+         └────────┬─────────┘
+                  │
+                  │ HTTP REST API
+                  │ (localhost:11434)
+                  │
+         ┌────────▼─────────┐
+         │  Ollama Server   │
+         │  (porta 11434)   │
+         ├──────────────────┤
+         │ • API Endpoints  │
+         │ • Gestione Model │
+         │ • Inferenza      │
+         └────────┬─────────┘
+                  │
+                  │ Carica modello
+                  │
+         ┌────────▼─────────┐
+         │  Granite4 Model  │
+         │  (LLM locale)    │
+         ├──────────────────┤
+         │ • Parametri: ~3B │
+         │ • Size: ~3.8 GB  │
+         │ • Multilingua    │
+         └──────────────────┘
+
+
+API Endpoints Disponibili
+==========================
+
+┌─────────────────────────────────────────────────────────┐
+│ GET  /api/tags          → Lista modelli disponibili     │
+├─────────────────────────────────────────────────────────┤
+│ POST /api/generate      → Genera testo (prompt singolo) │
+├─────────────────────────────────────────────────────────┤
+│ POST /api/chat          → Chat con cronologia           │
+├─────────────────────────────────────────────────────────┤
+│ POST /api/embeddings    → Genera embeddings vettoriali  │
+├─────────────────────────────────────────────────────────┤
+│ POST /api/pull          → Scarica un modello            │
+├─────────────────────────────────────────────────────────┤
+│ POST /api/push          → Carica un modello custom      │
+└─────────────────────────────────────────────────────────┘
+
+
+Flusso di una Richiesta Chat
+=============================
+
+    1. Script Python
+       │
+       │ client.chat("Ciao!")
+       │
+    2. Libreria ollama
+       │
+       │ Costruisce JSON request
+       │ {
+       │   "model": "granite4",
+       │   "messages": [...]
+       │ }
+       │
+    3. HTTP POST → localhost:11434/api/chat
+       │
+    4. Ollama Server
+       │
+       │ • Carica modello in RAM
+       │ • Esegue inferenza
+       │ • Genera risposta
+       │
+    5. HTTP Response JSON
+       │
+       │ {
+       │   "message": {
+       │     "role": "assistant",
+       │     "content": "Ciao! Come posso aiutarti?"
+       │   }
+       │ }
+       │
+    6. Libreria ollama
+       │
+       │ Parse della risposta
+       │
+    7. ← Script riceve risposta
+       │
+       print(risposta)
+
+
+Gestione della Conversazione
+=============================
+
+Senza cronologia:
+┌─────────┐
+│ User: A │ → [Risposta 1]
+└─────────┘
+
+┌─────────┐
+│ User: B │ → [Risposta 2] (non sa di A)
+└─────────┘
+
+
+Con cronologia (OllamaClient):
+┌─────────┐
+│ User: A │ → [Risposta 1]
+└────┬────┘
+     │ Salvata in history[]
+     │
+┌────▼────┐
+│ User: B │ → [Risposta 2] (conosce contesto di A)
+└────┬────┘
+     │ Salvata in history[]
+     │
+┌────▼────┐
+│ User: C │ → [Risposta 3] (conosce A e B)
+└─────────┘

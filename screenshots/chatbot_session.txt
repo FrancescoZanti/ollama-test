@@ -1,0 +1,44 @@
+🤖 Chatbot Ollama - Digita /help per i comandi disponibili
+
+Tu: Ciao! Come funziona Python?
+
+🤖: Ciao! Python è un linguaggio di programmazione interpretato e di 
+alto livello. Funziona attraverso:
+
+1. L'interprete Python legge il codice riga per riga
+2. Converte il codice in bytecode
+3. Esegue il bytecode nella Python Virtual Machine (PVM)
+
+È famoso per la sua sintassi chiara e leggibile che lo rende ideale 
+per principianti e professionisti.
+
+Tu: Puoi farmi un esempio di funzione?
+
+🤖: Certamente! Ecco un esempio di funzione in Python:
+
+```python
+def saluta(nome):
+    """Funzione che saluta una persona"""
+    messaggio = f"Ciao, {nome}! Benvenuto!"
+    return messaggio
+
+# Uso della funzione
+risultato = saluta("Mario")
+print(risultato)  # Output: Ciao, Mario! Benvenuto!
+```
+
+Questa funzione accetta un parametro 'nome' e restituisce un 
+messaggio di saluto personalizzato.
+
+Tu: /stats
+
+📊 Statistiche conversazione:
+- Messaggi totali: 4
+- Messaggi utente: 2
+- Messaggi assistente: 2
+- Modello: granite4
+- Durata sessione: 2 minuti
+
+Tu: /quit
+
+👋 Arrivederci! Conversazione salvata.
