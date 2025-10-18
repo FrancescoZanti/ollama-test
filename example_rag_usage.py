@@ -8,6 +8,10 @@ del proprio codice Python per creare applicazioni personalizzate.
 
 from rag_example import RAGSystem
 
+# Configurazione del modello
+DEFAULT_MODEL = "granite4"
+DEFAULT_PDF_FOLDER = "example/pdf"
+
 def esempio_base():
     """Esempio base di utilizzo del sistema RAG"""
     print("=" * 70)
@@ -15,7 +19,7 @@ def esempio_base():
     print("=" * 70)
     
     # Inizializza il sistema
-    rag = RAGSystem(pdf_folder="example/pdf", model_name="granite4")
+    rag = RAGSystem(pdf_folder=DEFAULT_PDF_FOLDER, model_name=DEFAULT_MODEL)
     
     # Carica i documenti PDF
     documents = rag.load_pdfs()
@@ -79,8 +83,8 @@ def esempio_generazione_custom(rag_system):
         # Crea un contesto personalizzato
         context = "\n".join(results['documents'][0])
         
-        # Crea un prompt personalizzato
-        custom_prompt = f"""Basandoti sul seguente contesto, crea un riassunto 
+        # Template per il prompt personalizzato
+        prompt_template = """Basandoti sul seguente contesto, crea un riassunto 
 in 3 punti chiave sull'intelligenza artificiale.
 
 CONTESTO:
@@ -88,8 +92,13 @@ CONTESTO:
 
 RIASSUNTO (3 punti):"""
         
+        custom_prompt = prompt_template.format(context=context)
+        
         print("\n🤖 Generazione risposta con prompt personalizzato...")
-        risposta = rag_system.generate_answer("", custom_prompt)
+        # Genera la risposta direttamente con il modello
+        import ollama
+        response = ollama.generate(model=rag_system.model_name, prompt=custom_prompt)
+        risposta = response['response']
         print(f"\n💡 Risposta:\n{risposta}")
 
 def esempio_statistiche(rag_system):

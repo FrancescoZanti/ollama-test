@@ -340,8 +340,8 @@ rag.load_pdfs()
 rag.create_embeddings()
 
 # Fai una domanda
-risposta = rag.query("Cos'è l'intelligenza artificiale?")
-print(risposta)
+answer = rag.query("Cos'è l'intelligenza artificiale?")
+print(answer)
 
 # Ricerca personalizzata
 results = rag.search("machine learning", n_results=5)
