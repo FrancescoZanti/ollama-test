@@ -1,0 +1,48 @@
+🛠️ Strumenti di Programmazione con Ollama
+==========================================
+
+Seleziona un'opzione:
+1. Revisione codice
+2. Genera documentazione
+3. Spiega errore
+4. Refactoring assistito
+5. Analisi performance
+
+Scelta: 1
+
+Inserisci il codice da revisionare:
+>>> def calcola(x,y):
+...     return x+y*2
+
+🔍 Analisi del codice in corso...
+
+📝 RISULTATI DELLA REVISIONE:
+
+✅ Punti forti:
+- Funzione semplice e compatta
+- Nome descrittivo
+
+⚠️ Suggerimenti:
+1. Aggiungi spazi intorno agli operatori per migliorare leggibilità
+2. Manca la documentazione (docstring)
+3. I nomi dei parametri potrebbero essere più descrittivi
+4. Considera di validare i tipi degli input
+
+💡 Codice migliorato:
+```python
+def calcola(primo_numero, secondo_numero):
+    """
+    Calcola il risultato di: primo_numero + (secondo_numero * 2)
+    
+    Args:
+        primo_numero: Il primo numero dell'operazione
+        secondo_numero: Il numero che verrà moltiplicato per 2
+        
+    Returns:
+        Il risultato del calcolo
+    """
+    return primo_numero + (secondo_numero * 2)
+```
+
+Vuoi salvare il codice migliorato? (s/n): s
+✅ Codice salvato in 'calcola_improved.py'

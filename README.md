@@ -1,6 +1,58 @@
-# Ollama Test con Python
+# 🤖 Ollama Test con Python
 
-Questo progetto contiene esempi per interagire con Ollama usando Python e il modello Granite4.
+Questo progetto contiene esempi pratici e completi per interagire con Ollama usando Python e il modello Granite4.
+
+```
+   ╔═══════════════════════════════════════════════════════╗
+   ║  🐍 Python + 🤖 Ollama + 💎 Granite4 = 🚀 AI Locale  ║
+   ╚═══════════════════════════════════════════════════════╝
+```
+
+**Caratteristiche principali:**
+- ✅ Esempi pratici e pronti all'uso
+- 🔄 Supporto per streaming delle risposte
+- 💬 Chatbot interattivo con cronologia
+- 🛠️ Strumenti per programmatori (code review, refactoring)
+- 📚 Documentazione completa con esempi di output
+- 🎯 Script progressivi: da principiante ad avanzato
+
+## 📑 Indice
+
+- [Prerequisiti](#prerequisiti)
+- [Installazione](#installazione)
+- [Verifica Ollama](#verifica-ollama)
+- [Script disponibili](#script-disponibili)
+- [Diagrammi e Architettura](#-diagrammi-e-architettura)
+- [Esempi di utilizzo](#esempi-di-utilizzo)
+- [API Endpoints](#api-endpoints)
+- [Troubleshooting](#troubleshooting)
+- [Struttura del progetto](#struttura-del-progetto)
+- [Risorse utili](#risorse-utili)
+
+## 🚀 Quick Start
+
+**Vuoi iniziare subito?** Segui questi 4 passi:
+
+```bash
+# 1️⃣ Clona il repository
+git clone https://github.com/FrancescoZanti/ollama-test.git
+cd ollama-test
+
+# 2️⃣ Installa le dipendenze Python
+pip install -r requirements.txt
+
+# 3️⃣ Verifica che Ollama sia attivo (in un altro terminale)
+ollama serve
+
+# 4️⃣ Esegui il test rapido
+python quick_test.py
+```
+
+**Risultato atteso:**
+```
+✅ Connesso! Modelli disponibili: 2
+🤖 Risposta: OK
+```
 
 ## Prerequisiti
 
@@ -45,6 +97,29 @@ Verifica che tutto sia configurato correttamente:
 python setup_check.py
 ```
 
+**Output di esempio:**
+```
+🔧 Verifica configurazione Ollama + Python
+==================================================
+
+📋 Versione Python:
+🐍 Python versione: 3.11.0
+✅ Versione Python compatibile
+
+📋 Server Ollama:
+✅ Server Ollama raggiungibile - 2 modelli disponibili
+   📦 granite4:latest (3842.5 MB)
+   📦 llama2:7b (3825.8 MB)
+
+📋 Modelli Granite:
+✅ Modelli Granite trovati: 1
+   🔥 granite4:latest
+
+🎉 Tutto configurato correttamente!
+```
+
+[Vedi output completo](screenshots/setup_check_output.txt)
+
 ### 2. `ollama_basic.py` - Esempi base
 
 Contiene funzioni per:
@@ -56,6 +131,26 @@ Contiene funzioni per:
 ```bash
 python ollama_basic.py
 ```
+
+**Output di esempio:**
+```
+=== Test connessione Ollama ===
+Modelli disponibili:
+- granite4:latest
+- llama2:7b
+
+=== Chat semplice ===
+Risposta: Ciao! Sono un assistente AI creato per aiutarti...
+
+=== Chat con streaming ===
+Risposta in streaming:
+Ecco 3 punti chiave sul machine learning:
+1. **Apprendimento dai dati**: ...
+2. **Modelli predittivi**: ...
+3. **Miglioramento continuo**: ...
+```
+
+[Vedi output completo](screenshots/ollama_basic_output.txt)
 
 ### 3. `ollama_advanced.py` - Esempi avanzati
 
@@ -91,6 +186,24 @@ Un chatbot completo con:
 python chatbot.py
 ```
 
+**Esempio di sessione:**
+```
+🤖 Chatbot Ollama - Digita /help per i comandi disponibili
+
+Tu: Ciao! Come funziona Python?
+
+🤖: Ciao! Python è un linguaggio di programmazione interpretato...
+
+Tu: /stats
+
+📊 Statistiche conversazione:
+- Messaggi totali: 4
+- Messaggi utente: 2
+- Messaggi assistente: 2
+```
+
+[Vedi sessione completa](screenshots/chatbot_session.txt)
+
 ### 6. `programming_tools.py` - Strumenti per programmatori
 
 Strumenti specializzati per sviluppatori:
@@ -103,6 +216,92 @@ Strumenti specializzati per sviluppatori:
 ```bash
 python programming_tools.py
 ```
+
+**Esempio di revisione codice:**
+```
+🛠️ Strumenti di Programmazione con Ollama
+
+Seleziona un'opzione:
+1. Revisione codice
+
+Inserisci il codice da revisionare:
+>>> def calcola(x,y):
+...     return x+y*2
+
+📝 RISULTATI DELLA REVISIONE:
+
+✅ Punti forti:
+- Funzione semplice e compatta
+
+⚠️ Suggerimenti:
+1. Aggiungi spazi intorno agli operatori
+2. Manca la documentazione (docstring)
+3. I nomi dei parametri potrebbero essere più descrittivi
+```
+
+[Vedi output completo](screenshots/programming_tools_output.txt)
+
+## 📊 Diagrammi e Architettura
+
+### Architettura del Sistema
+
+Il progetto utilizza una architettura client-server dove gli script Python comunicano con il server Ollama locale:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    UTENTE / SVILUPPATORE                     │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+                     │ Esegue script Python
+                     │
+        ┌────────────┴────────────┐
+        │                         │
+┌───────▼─────────┐      ┌────────▼────────┐
+│  Script Python  │      │   Chatbot CLI    │
+│  (esempio)      │      │   (interattivo)  │
+└────────┬────────┘      └────────┬─────────┘
+         │                        │
+         │  API Calls             │
+         └────────┬───────────────┘
+                  │
+         ┌────────▼─────────┐
+         │ Libreria ollama  │
+         │  (Python SDK)    │
+         └────────┬─────────┘
+                  │
+                  │ HTTP REST API (localhost:11434)
+                  │
+         ┌────────▼─────────┐
+         │  Ollama Server   │
+         └────────┬─────────┘
+                  │
+         ┌────────▼─────────┐
+         │  Granite4 Model  │
+         │   (~3.8 GB)      │
+         └──────────────────┘
+```
+
+[Vedi architettura dettagliata](screenshots/architecture.txt)
+
+### Workflow di Utilizzo
+
+Flusso consigliato per iniziare:
+
+```
+1. Installa Ollama → 2. Avvia Server → 3. Scarica Granite4
+                                              ↓
+4. Setup Python   ← 5. Verifica Setup   ←   Pronto!
+```
+
+**Scelta dello Script:**
+- 🚀 **Test veloce?** → `quick_test.py`
+- 📚 **Imparare?** → `ollama_basic.py`
+- 💻 **Sviluppare?** → `ollama_advanced.py`
+- 💬 **Chat interattiva?** → `chatbot.py`
+- 🔧 **Programmare?** → `programming_tools.py`
+- 🌐 **HTTP API?** → `ollama_http.py`
+
+[Vedi workflow dettagliato](screenshots/workflow.txt)
 
 ## Esempi di utilizzo
 
@@ -169,12 +368,28 @@ Ollama espone diverse API REST:
 
 ```
 ollama-test/
-├── readme.md              # Questa guida
-├── ollama_basic.py         # Esempi base
-├── ollama_advanced.py      # Client avanzato
-├── ollama_http.py          # API HTTP dirette
-├── chatbot.py             # Chatbot interattivo
-└── .venv/                 # Ambiente virtuale Python
+├── README.md                      # 📖 Questa guida completa
+├── requirements.txt               # 📦 Dipendenze Python
+│
+├── setup_check.py                 # 🔍 Verifica configurazione
+├── quick_test.py                  # ⚡ Test rapido connessione
+│
+├── ollama_basic.py                # 📚 Esempi base per iniziare
+├── ollama_advanced.py             # 🎓 Client avanzato con cronologia
+├── ollama_http.py                 # 🌐 API HTTP dirette
+│
+├── chatbot.py                     # 💬 Chatbot interattivo
+├── programming_tools.py           # 🛠️ Strumenti per sviluppatori
+│
+├── screenshots/                   # 📸 Esempi di output e diagrammi
+│   ├── architecture.txt           #     Architettura del sistema
+│   ├── workflow.txt               #     Flusso di lavoro
+│   ├── setup_check_output.txt     #     Output di esempio
+│   ├── ollama_basic_output.txt    #     Esempi di esecuzione
+│   ├── chatbot_session.txt        #     Sessione chat esempio
+│   └── programming_tools_output.txt
+│
+└── .venv/                         # 🐍 Ambiente virtuale Python
 ```
 
 ## Risorse utili

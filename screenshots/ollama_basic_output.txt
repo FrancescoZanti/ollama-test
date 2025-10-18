@@ -1,0 +1,33 @@
+=== Test connessione Ollama ===
+Modelli disponibili:
+- granite4:latest
+- llama2:7b
+
+=== Chat semplice ===
+Risposta: Ciao! Sono un assistente AI creato per aiutarti. Posso 
+rispondere a domande, fornire informazioni, aiutarti con la 
+programmazione e molto altro. Come posso aiutarti oggi?
+
+=== Generazione semplice ===
+Risposta: Nel silenzio dei circuiti,
+nasce un pensiero digitale,
+un'eco di intelligenza
+che danza tra i bit,
+cercando di comprendere
+l'essenza dell'umano.
+
+=== Chat con streaming ===
+Risposta in streaming:
+Ecco 3 punti chiave sul machine learning:
+
+1. **Apprendimento dai dati**: Il machine learning permette ai 
+   computer di imparare automaticamente dai dati senza essere 
+   esplicitamente programmati per ogni caso.
+
+2. **Modelli predittivi**: Crea modelli che possono fare previsioni 
+   o prendere decisioni basandosi su pattern identificati nei dati 
+   di addestramento.
+
+3. **Miglioramento continuo**: I modelli migliorano le loro 
+   performance man mano che vengono esposti a più dati, adattandosi 
+   a nuovi pattern e situazioni.

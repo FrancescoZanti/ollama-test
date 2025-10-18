@@ -1,0 +1,231 @@
+Workflow di Utilizzo degli Script
+===================================
+
+SETUP INIZIALE
+==============
+
+    ┌─────────────────────────┐
+    │  1. Installa Ollama     │
+    │  https://ollama.ai      │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │  2. Avvia Ollama        │
+    │  $ ollama serve         │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │  3. Scarica Granite4    │
+    │  $ ollama pull granite4 │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │  4. Setup Python        │
+    │  $ pip install -r       │
+    │    requirements.txt     │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │  5. Verifica Setup      │
+    │  $ python setup_check.py│
+    └─────────────────────────┘
+
+
+SCELTA DELLO SCRIPT
+===================
+
+              ╔══════════════════╗
+              ║ Cosa vuoi fare?  ║
+              ╚════════╤═════════╝
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+        ▼              ▼              ▼
+┌───────────────┐ ┌─────────────┐ ┌──────────────┐
+│ Test veloce?  │ │ Imparare?   │ │ Sviluppare?  │
+└───────┬───────┘ └──────┬──────┘ └──────┬───────┘
+        │                │               │
+        ▼                ▼               ▼
+┌───────────────┐ ┌─────────────┐ ┌──────────────┐
+│ quick_test.py │ │ollama_basic │ │ollama_       │
+│               │ │    .py      │ │advanced.py   │
+└───────────────┘ └─────────────┘ └──────────────┘
+
+
+        │              │              │
+        │              │              │
+        ▼              ▼              ▼
+┌───────────────┐ ┌─────────────┐ ┌──────────────┐
+│ Chat         │ │ Programmare?│ │ HTTP API?    │
+│ interattiva? │ │             │ │              │
+└───────┬───────┘ └──────┬──────┘ └──────┬───────┘
+        │                │               │
+        ▼                ▼               ▼
+┌───────────────┐ ┌─────────────┐ ┌──────────────┐
+│  chatbot.py   │ │programming_ │ │ ollama_      │
+│               │ │  tools.py   │ │  http.py     │
+└───────────────┘ └─────────────┘ └──────────────┘
+
+
+ESEMPIO: Flusso del Chatbot
+============================
+
+    START
+      │
+      ▼
+    ┌─────────────────────────┐
+    │ python chatbot.py       │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │ Inizializza ChatBot     │
+    │ - Carica config         │
+    │ - Prepara system prompt │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │ Mostra prompt           │
+    │ "Tu: "                  │
+    └────────────┬────────────┘
+                 │
+         ┌───────┴───────┐
+         │ Input utente  │
+         └───────┬───────┘
+                 │
+      ┌──────────┴──────────┐
+      │                     │
+      ▼                     ▼
+┌──────────┐         ┌──────────────┐
+│ Comando  │         │ Messaggio    │
+│ /help    │         │ normale      │
+│ /stats   │         └──────┬───────┘
+│ /save    │                │
+│ /quit    │                ▼
+└────┬─────┘         ┌──────────────┐
+     │               │ Invia a      │
+     │               │ Ollama       │
+     │               └──────┬───────┘
+     │                      │
+     │                      ▼
+     │               ┌──────────────┐
+     │               │ Ricevi       │
+     │               │ risposta     │
+     │               └──────┬───────┘
+     │                      │
+     └──────────┬───────────┘
+                │
+                ▼
+    ┌─────────────────────────┐
+    │ Mostra risposta         │
+    │ "🤖: ..."               │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │ Salva in cronologia     │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │ Torna al prompt         │
+    └────────────┬────────────┘
+                 │
+                 └─────→ LOOP
+
+
+ESEMPIO: Programming Tools
+============================
+
+    START
+      │
+      ▼
+    ┌─────────────────────────┐
+    │ python programming_     │
+    │        tools.py         │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │ Menu Principale         │
+    │ 1. Revisione codice     │
+    │ 2. Genera docs          │
+    │ 3. Spiega errore        │
+    │ 4. Refactoring          │
+    │ 5. Analisi performance  │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │ Utente seleziona        │
+    └────────────┬────────────┘
+                 │
+      ┌──────────┴──────────┐
+      │                     │
+      ▼                     ▼
+┌──────────┐         ┌──────────────┐
+│ Incolla  │         │ Carica da    │
+│ codice   │         │ file         │
+└────┬─────┘         └──────┬───────┘
+     │                      │
+     └──────────┬───────────┘
+                │
+                ▼
+    ┌─────────────────────────┐
+    │ Prepara prompt          │
+    │ specializzato           │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │ Invia a Ollama          │
+    │ con contesto            │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │ Ricevi analisi          │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │ Formatta output         │
+    │ - Problemi trovati      │
+    │ - Suggerimenti          │
+    │ - Codice migliorato     │
+    └────────────┬────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────┐
+    │ Opzioni post-analisi    │
+    │ - Salva risultati       │
+    │ - Applica modifiche     │
+    │ - Nuova analisi         │
+    └─────────────────────────┘
+
+
+BEST PRACTICES
+==============
+
+1. Test della connessione
+   └─→ Sempre eseguire setup_check.py prima
+
+2. Primi passi
+   └─→ Inizia con quick_test.py o ollama_basic.py
+
+3. Sviluppo
+   └─→ Usa ollama_advanced.py per app con stato
+
+4. Debugging
+   └─→ ollama_http.py per controllo completo
+
+5. Uso quotidiano
+   └─→ chatbot.py per interazione rapida
+
+6. Coding assistant
+   └─→ programming_tools.py per aiuto nello sviluppo
