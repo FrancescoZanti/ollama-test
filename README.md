@@ -327,6 +327,33 @@ l'intelligenza umana...
 - 🤖 **Generazione contestuale**: Produce risposte accurate basate solo sul contenuto recuperato
 - 💬 **Modalità interattiva**: Permette di fare domande in modo conversazionale
 
+**Utilizzo programmatico:**
+
+Il file `example_rag_usage.py` contiene esempi pratici di come utilizzare il sistema RAG nel proprio codice:
+
+```python
+from rag_example import RAGSystem
+
+# Inizializza e carica documenti
+rag = RAGSystem(pdf_folder="example/pdf", model_name="granite4")
+rag.load_pdfs()
+rag.create_embeddings()
+
+# Fai una domanda
+risposta = rag.query("Cos'è l'intelligenza artificiale?")
+print(risposta)
+
+# Ricerca personalizzata
+results = rag.search("machine learning", n_results=5)
+for doc in results['documents'][0]:
+    print(doc)
+```
+
+Esegui gli esempi con:
+```bash
+python example_rag_usage.py
+```
+
 ## 📊 Diagrammi e Architettura
 
 ### Architettura del Sistema
@@ -469,6 +496,7 @@ ollama-test/
 ├── chatbot.py                     # 💬 Chatbot interattivo
 ├── programming_tools.py           # 🛠️ Strumenti per sviluppatori
 ├── rag_example.py                 # 🔍 Sistema RAG con PDF
+├── example_rag_usage.py           # 📖 Esempi di utilizzo RAG
 │
 ├── example/                       # 📁 Esempi e risorse
 │   └── pdf/                       # 📄 PDF per il sistema RAG
