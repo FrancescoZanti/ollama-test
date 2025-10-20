@@ -6,6 +6,7 @@ Esempio di chatbot interattivo con Ollama
 import ollama
 import sys
 from datetime import datetime
+from config import get_ollama_base_url
 
 class ChatBot:
     def __init__(self, model_name="granite4"):
@@ -93,12 +94,14 @@ def run_interactive_chat():
     bot = ChatBot()
     
     # Test iniziale della connessione
+    base_url = get_ollama_base_url()
     try:
         test_response = ollama.list()
-        print(f"✅ Connesso a Ollama. Modelli disponibili: {len(test_response['models'])}")
+        print(f"✅ Connesso a Ollama su {base_url}")
+        print(f"   Modelli disponibili: {len(test_response['models'])}")
     except Exception as e:
-        print(f"❌ Errore di connessione a Ollama: {e}")
-        print("Assicurati che Ollama sia in esecuzione su localhost:11434")
+        print(f"❌ Errore di connessione a Ollama su {base_url}: {e}")
+        print("Assicurati che Ollama sia in esecuzione")
         return
     
     print("\n💬 Inizia a chattare! (scrivi /quit per uscire)\n")

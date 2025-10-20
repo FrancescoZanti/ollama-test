@@ -3,6 +3,7 @@
 Test rapido per verificare connessione Ollama
 """
 
+import config  # Carica configurazione da .env
 import ollama
 
 # Test veloce

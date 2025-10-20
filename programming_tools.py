@@ -3,6 +3,7 @@
 Esempi pratici di utilizzo di Ollama con Granite4
 """
 
+import config  # Carica configurazione da .env
 import ollama
 import json
 import time

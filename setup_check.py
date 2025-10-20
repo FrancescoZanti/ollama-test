@@ -7,6 +7,7 @@ import sys
 import subprocess
 import requests
 import json
+from config import get_ollama_base_url
 
 def check_python_version():
     """Verifica la versione di Python"""
@@ -22,11 +23,13 @@ def check_python_version():
 
 def check_ollama_server():
     """Verifica che il server Ollama sia raggiungibile"""
+    base_url = get_ollama_base_url()
     try:
-        response = requests.get("http://localhost:11434/api/tags", timeout=5)
+        response = requests.get(f"{base_url}/api/tags", timeout=5)
         if response.status_code == 200:
             models = response.json()
             print(f"✅ Server Ollama raggiungibile - {len(models['models'])} modelli disponibili")
+            print(f"   URL: {base_url}")
             
             # Mostra i modelli
             for model in models['models']:
@@ -38,12 +41,12 @@ def check_ollama_server():
             print(f"❌ Server Ollama risponde con codice: {response.status_code}")
             return False
     except requests.ConnectionError:
-        print("❌ Impossibile connettersi al server Ollama")
+        print(f"❌ Impossibile connettersi al server Ollama su {base_url}")
         print("   Assicurati che Ollama sia in esecuzione:")
         print("   ollama serve")
         return False
     except requests.Timeout:
-        print("❌ Timeout nella connessione al server Ollama")
+        print(f"❌ Timeout nella connessione al server Ollama su {base_url}")
         return False
     except Exception as e:
         print(f"❌ Errore nella verifica del server: {e}")
@@ -51,8 +54,9 @@ def check_ollama_server():
 
 def check_granite4_model():
     """Verifica che il modello Granite4 sia disponibile"""
+    base_url = get_ollama_base_url()
     try:
-        response = requests.get("http://localhost:11434/api/tags", timeout=5)
+        response = requests.get(f"{base_url}/api/tags", timeout=5)
         if response.status_code == 200:
             models = response.json()
             granite_models = [m for m in models['models'] if 'granite' in m['name'].lower()]

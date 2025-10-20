@@ -58,7 +58,7 @@ python quick_test.py
 
 ## Prerequisiti
 
-- Ollama installato e in esecuzione sulla porta 11434
+- Ollama installato e in esecuzione
 - Modello Granite4 scaricato
 - Python 3.7+
 
@@ -74,8 +74,40 @@ python quick_test.py
    ```
 3. Installa le dipendenze:
    ```bash
-   pip install ollama requests
+   pip install -r requirements.txt
    ```
+4. (Opzionale) Configura il server Ollama:
+   ```bash
+   # Copia il file di configurazione di esempio
+   cp .env.example .env
+   
+   # Modifica .env per specificare un server Ollama differente
+   # OLLAMA_BASE_URL=http://localhost:11434  # Default
+   # OLLAMA_BASE_URL=http://192.168.1.100:11434  # Server remoto
+   ```
+
+## Configurazione
+
+Il progetto supporta la configurazione tramite file `.env` per specificare server Ollama differenti:
+
+1. **Crea un file `.env`** nella root del progetto (opzionale):
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Modifica il file `.env`** per specificare l'URL del tuo server Ollama:
+   ```bash
+   # Per server locale (default)
+   OLLAMA_BASE_URL=http://localhost:11434
+   
+   # Per server remoto
+   OLLAMA_BASE_URL=http://192.168.1.100:11434
+   
+   # Per server su rete differente
+   OLLAMA_BASE_URL=http://myserver.example.com:11434
+   ```
+
+3. **Se non crei il file `.env`**, il progetto userà automaticamente `http://localhost:11434` come server predefinito.
 
 ## Verifica Ollama
 
