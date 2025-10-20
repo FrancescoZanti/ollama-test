@@ -6,10 +6,13 @@ Esempi avanzati per interagire con Ollama
 import ollama
 import json
 from typing import List, Dict, Any
+from config import get_ollama_base_url
 
 class OllamaClient:
-    def __init__(self, model_name="granite4", base_url="http://localhost:11434"):
+    def __init__(self, model_name="granite4", base_url=None):
         self.model_name = model_name
+        if base_url is None:
+            base_url = get_ollama_base_url()
         self.base_url = base_url
         self.conversation_history = []
     

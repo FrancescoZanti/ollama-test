@@ -6,9 +6,12 @@ Interazione con Ollama usando richieste HTTP dirette
 import requests
 import json
 from typing import Dict, Any, Iterator
+from config import get_ollama_base_url
 
 class OllamaHTTPClient:
-    def __init__(self, base_url: str = "http://localhost:11434"):
+    def __init__(self, base_url: str = None):
+        if base_url is None:
+            base_url = get_ollama_base_url()
         self.base_url = base_url.rstrip('/')
     
     def list_models(self) -> Dict[str, Any]:

@@ -12,6 +12,9 @@ ENV/
 dist/
 build/
 
+# Environment variables
+.env
+
 # IDE
 .vscode/
 .idea/
