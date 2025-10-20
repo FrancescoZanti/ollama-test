@@ -135,7 +135,7 @@ print(str(client._client.base_url))
     
     # Cleanup
     os.remove('.env')
-    print("✅ Test integrazione librama ollama superato\n")
+    print("✅ Test integrazione libreria ollama superato\n")
 
 def test_env_file_ignored():
     """Test che .env sia ignorato da git"""
