@@ -4,6 +4,7 @@ Esempio di sistema RAG (Retrieval Augmented Generation) con Ollama
 Utilizza i PDF nella cartella example/pdf per creare una knowledge base interrogabile
 """
 
+import config  # Carica configurazione da .env
 import ollama
 import chromadb
 from pypdf import PdfReader

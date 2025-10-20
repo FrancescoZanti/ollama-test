@@ -6,6 +6,7 @@ Questo script mostra come utilizzare il sistema RAG all'interno
 del proprio codice Python per creare applicazioni personalizzate.
 """
 
+import config  # Carica configurazione da .env
 from rag_example import RAGSystem
 
 # Configurazione del modello

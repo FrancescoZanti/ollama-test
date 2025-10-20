@@ -32,6 +32,11 @@ def test_config_module():
     assert url == 'http://localhost:11434', f"Expected default URL, got {url}"
     print("  ✅ Test 1: URL default corretto")
     
+    # Test 1b: Verify OLLAMA_HOST is set
+    host = run_python_code('import config; import os; print(os.environ.get("OLLAMA_HOST", "NOT_SET"))')
+    assert host == 'http://localhost:11434', f"Expected OLLAMA_HOST to be set, got {host}"
+    print("  ✅ Test 1b: OLLAMA_HOST impostato correttamente")
+    
     # Test 2: URL personalizzato da .env
     with open('.env', 'w') as f:
         f.write('OLLAMA_BASE_URL=http://test-server:9999\n')
@@ -39,6 +44,11 @@ def test_config_module():
     url = run_python_code('from config import get_ollama_base_url; print(get_ollama_base_url())')
     assert url == 'http://test-server:9999', f"Expected custom URL, got {url}"
     print("  ✅ Test 2: URL personalizzato da .env corretto")
+    
+    # Test 2b: Verify OLLAMA_HOST is updated
+    host = run_python_code('import config; import os; print(os.environ.get("OLLAMA_HOST", "NOT_SET"))')
+    assert host == 'http://test-server:9999', f"Expected OLLAMA_HOST to be updated, got {host}"
+    print("  ✅ Test 2b: OLLAMA_HOST aggiornato correttamente")
     
     # Cleanup
     os.remove('.env')
@@ -100,6 +110,33 @@ print(client.base_url)
     
     print("✅ Tutti i test OllamaClient superati\n")
 
+def test_ollama_library_integration():
+    """Test che la libreria ollama usi OLLAMA_HOST correttamente"""
+    print("🧪 Test integrazione libreria ollama...")
+    
+    # Cleanup any .env file first
+    if Path('.env').exists():
+        os.remove('.env')
+    
+    # Test che OLLAMA_HOST sia usato dalla libreria ollama
+    with open('.env', 'w') as f:
+        f.write('OLLAMA_BASE_URL=http://custom-ollama:7777\n')
+    
+    base_url = run_python_code('''
+import config  # Questo imposta OLLAMA_HOST
+import ollama
+client = ollama.Client()
+print(str(client._client.base_url))
+''')
+    
+    # The ollama client adds a trailing slash and may format differently
+    assert 'custom-ollama:7777' in base_url, f"Expected custom-ollama:7777 in {base_url}"
+    print("  ✅ Test 1: Libreria ollama usa OLLAMA_HOST correttamente")
+    
+    # Cleanup
+    os.remove('.env')
+    print("✅ Test integrazione librama ollama superato\n")
+
 def test_env_file_ignored():
     """Test che .env sia ignorato da git"""
     print("🧪 Test .gitignore...")
@@ -117,10 +154,13 @@ def test_env_file_ignored():
         text=True
     )
     
-    if '.env' in result.stdout:
-        print("  ❌ Errore: .env non è ignorato da git")
-        os.remove('.env')
-        sys.exit(1)
+    # Cerca esattamente ".env" (non ".env.example")
+    for line in result.stdout.split('\n'):
+        if line.strip().endswith('.env') and not line.strip().endswith('.env.example'):
+            print("  ❌ Errore: .env non è ignorato da git")
+            print(f"     Linea trovata: {line}")
+            os.remove('.env')
+            sys.exit(1)
     
     print("  ✅ File .env correttamente ignorato da git")
     
@@ -155,6 +195,7 @@ def main():
         test_config_module()
         test_http_client()
         test_advanced_client()
+        test_ollama_library_integration()
         test_env_file_ignored()
         
         print("=" * 60)

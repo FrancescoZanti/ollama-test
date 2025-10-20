@@ -3,6 +3,7 @@
 Esempio base per interagire con Ollama usando la libreria ufficiale
 """
 
+import config  # Carica configurazione da .env
 import ollama
 
 def test_connection():
